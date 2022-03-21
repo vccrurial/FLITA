@@ -4,7 +4,7 @@
 int main(int argc, char *argv[]) {
         FILE *FNUM1, *FNUM2;
         int NUM = 0;
-        char c[2048];
+        char c[1024];
 
         for (int i = 0; i < 1024; i ++) {
                 c[i] = '/0';
