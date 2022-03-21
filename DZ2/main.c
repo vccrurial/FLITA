@@ -4,16 +4,16 @@
 int main(int argc, char *argv[]) {
         FILE *FNUM1, *FNUM2;
         int NUM = 0;
-        char c[1024];
+        char p[1024];
 
         for (int i = 0; i < 1024; i ++) {
-                c[i] = '/0';
+                p[i] = '/0';
         }
 
         FNUM1 = fopen(argv[1], "r");
-        fgets(c, 1024, FNUM1);
+        fgets(p, 1024, FNUM1);
         for (int i = 0; i < 1024; i ++) {
-                if (c[i] == ' ')
+                if (p[i] == ' ')
                         NUM++;
         }
         fclose(FNUM1);
@@ -23,9 +23,9 @@ int main(int argc, char *argv[]) {
 
         for (int i = 0; i < NUM; i++) {
                 for (int k = 0; k < NUM; k++) {
-                        fscanf(FNUM1, "%s ", &c);
-                        if (c[0] != '0' && k >= i)
-                                fprintf(FNUM2, "\t%c -- %c [label = %s];\n", 'A' + i, 'A' + k, c);
+                        fscanf(FNUM1, "%s ", &p);
+                        if (p[0] != '0' && k >= i)
+                                fprintf(FNUM2, "\t%c -- %c [label = %s];\n", 'A' + i, 'A' + k, p);
                 }
         }
         fprintf(FNUM2, "}");
