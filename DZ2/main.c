@@ -12,9 +12,6 @@ int main() {
     FILE_INPUT = fopen("matrix_of_incendence.txt", "r");
     while (!feof(FILE_INPUT)) {
         s = fgetc(FILE_INPUT);
-        if (s == '\n') {
-            d++;
-        }
         if (s != ' ' && s != '\n') {
             arr[i][j] = s;
             j++;
