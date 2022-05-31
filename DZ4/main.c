@@ -3,21 +3,21 @@
 #include <stdlib.h>
 #include <locale.h>
 
-void InsertSort(int n, int schetchik[], int yacheyki[])
+void InsertSort(int n, int counter[], int cells[])
 {
-    int newElement, location, newYacheyka;
+    int newElement, location, newCell;
 
     for (int i = 1; i < n; i++){
-        newElement = schetchik[i];
-        newYacheyka = yacheyki[i];
+        newElement = counter[i];
+        newCell = cells[i];
         location = i - 1;
-        while(location >= 0 && schetchik[location] > newElement){
-            schetchik[location+1] = schetchik[location];
-            yacheyki[location+1]=yacheyki[location];
+        while(location >= 0 && counter[location] > newElement){
+            counter[location+1] = counter[location];
+            cells[location+1]=cells[location];
             location = location - 1;
         }
-        schetchik[location+1] = newElement;
-        yacheyki[location+1]=newYacheyka;
+        counter[location+1] = newElement;
+        cells[location+1]=newCell;
     }
 }
 
@@ -25,7 +25,7 @@ void graphviz(int edges, int arr[edges][edges]){
         int i,j;
         FILE *graph;
         graph=fopen("graph.dot", "w");
-        fprintf(graph, "%s", "graph whatsthis{\n");
+        fprintf(graph, "%s", "graph awesomegraph{\n");
             for(i=0; i<edges; i++){
                 fprintf(graph, "\t%d;\n", i+1);
             }
@@ -80,9 +80,9 @@ int main()
             printf("Некорректный ответ\n");
         }
         if(ans==1){
-            int schetchik[edges];
+            int counter[edges];
             for(int n=0;n<edges;n++){
-                schetchik[n]=0;
+                counter[n]=0;
             }
             printf("Ячейки:\n");
 
@@ -90,25 +90,25 @@ int main()
                 for(j=0;j<edges;j++){
                     if(arr[i][j]==1){
                         if(i==j){
-                            schetchik[i]++;
+                            counter[i]++;
                         }
-                        schetchik[i]++;
+                        counter[i]++;
                     }
                 }
-                printf("ячейка %d - степень %d\n",i+1,schetchik[i]);
+                printf("ячейка %d - степень %d\n",i+1,counter[i]);
             }
 
-            int yacheyki[edges];
+            int cells[edges];
             for(i=1;i<=edges;i++){
-                yacheyki[i-1]=i;
+                cells[i-1]=i;
             }
 
-            InsertSort(edges, schetchik, yacheyki);
+            InsertSort(edges, counter, cells);
             printf("Cортировка ячеек с четными вершинами...\n");
 
             for(i=0;i<edges;i++){
-                if(schetchik[i]%2==0&&schetchik[i]!=0){
-                    printf("ячейка %d - степень%d\n",yacheyki[i],schetchik[i]);
+                if(counter[i]%2==0&&counter[i]!=0){
+                    printf("ячейка %d - степень%d\n",cells[i],counter[i]);
                 }
             }
         }
